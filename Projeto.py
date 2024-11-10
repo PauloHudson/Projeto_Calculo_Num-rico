@@ -32,8 +32,6 @@ pares_de_colunas = [
 ]
 
 # Executar regressões lineares e exibir resultados
-for i, (coluna_x, coluna_y) in enumerate(pares_de_colunas, start=1):
-    # Filtrar dados e remover outliers sincronizadamente
     dados_filtrados = dados[(dados[coluna_x] < dados[coluna_x].quantile(0.99)) & 
                             (dados[coluna_y] < dados[coluna_y].quantile(0.99))]
     
@@ -66,7 +64,6 @@ for i, (coluna_x, coluna_y) in enumerate(pares_de_colunas, start=1):
     plt.scatter(X, Y, color="blue", s=10, alpha=0.5, label="Dados reais")  # Tamanho e transparência dos pontos
     plt.plot(X, y_pred, color="red", linewidth=2, label="Linha de regressão")
     
-    # Ajustar escala logarítmica, se necessário
     # Ajustar escala logarítmica, se necessário
     if X.min() > 0 and Y.min() > 0:  # Verifica se os valores são maiores que zero
         if (X.max() / X.min() > 100) or (Y.max() / Y.min() > 100):  # Condição para diferença significativa de escala
